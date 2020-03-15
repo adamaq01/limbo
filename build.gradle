@@ -1,15 +1,63 @@
-plugins {
-    id 'java'
+allprojects {
+    apply plugin: 'java'
+    apply plugin: 'idea'
+    apply plugin: 'maven'
+    apply plugin: 'maven-publish'
+
+    tasks.withType(JavaCompile) { options.encoding = 'UTF-8' }
+
+    group 'fr.adamaq01'
+    version '1.0.0'
+
+    sourceCompatibility = JavaVersion.VERSION_12
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
+        maven { url 'https://oss.sonatype.org/content/repositories/releases/' }
+        maven { url 'https://jitpack.io' }
+        maven {
+            name = 'spigotmc-repo'
+            url = 'https://hub.spigotmc.org/nexus/content/groups/public/'
+        }
+        maven {
+            name = 'velocity'
+            url = 'https://repo.velocitypowered.com/snapshots/'
+        }
+        maven {
+            name = 'sonatype'
+            url = 'https://oss.sonatype.org/content/groups/public/'
+        }
+    }
 }
 
-group 'fr.adamaq01'
-version '1.0.0'
+project(':limbo-api') {
+    dependencies {
+        compile 'org.joml:joml:1.9.22'
+    }
 
-sourceCompatibility = 1.8
-
-repositories {
-    mavenCentral()
+    publishing {
+        publications {
+            mavenJava(MavenPublication) {
+                from components.java
+            }
+        }
+    }
 }
 
-dependencies {
+project(':limbo-server') {
+    dependencies {
+        compile project(":limbo-api")
+        compile 'com.github.Adamaq01:ozao-net:2.3.1'
+        compile 'commons-io:commons-io:2.6'
+        compile 'org.apache.commons:commons-lang3:3.9'
+        compile 'com.electronwill.night-config:toml:3.6.2'
+    }
+}
+
+project(':limbo-test-plugin') {
+    dependencies {
+        compile project(":limbo-api")
+    }
 }
