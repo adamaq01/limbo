@@ -1,0 +1,4 @@
+name = "TestPlugin"
+version = "1.0.0"
+class = "fr.adamaq01.limbo.test.TestPlugin"
+author = "Adamaq01"

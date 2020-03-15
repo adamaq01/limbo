@@ -1,0 +1,16 @@
+plugins {
+    id 'java'
+}
+
+group 'fr.adamaq01.limbo'
+version '1.0.0'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile project(":api")
+}

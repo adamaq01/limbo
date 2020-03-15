@@ -1,0 +1,5 @@
+rootProject.name = 'limbo'
+include 'api'
+include 'server'
+include 'test-plugin'
+

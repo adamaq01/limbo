@@ -1,0 +1,21 @@
+plugins {
+    id 'java'
+}
+
+group 'fr.adamaq01.limbo'
+version '1.0.0'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    maven { url "https://jitpack.io" }
+}
+
+dependencies {
+    compile project(":api")
+    compile 'com.github.Adamaq01:ozao-net:2.3.1'
+    compile 'commons-io:commons-io:2.6'
+    compile 'org.apache.commons:commons-lang3:3.9'
+    compile 'com.electronwill.night-config:toml:3.6.2'
+}
